@@ -1,8 +1,26 @@
+<div align="center">
+
 # Анализ отзывов отелей Booking.com
 
-Проект по соревнованию [Kaggle sf-booking](https://www.kaggle.com/competitions/sf-booking): построение модели, предсказывающей рейтинг отеля (`reviewer_score`) по табличным и инженерным признакам. Цель — выявлять объекты, у которых фактический рейтинг существенно расходится с предсказанным.
+**Предсказание рейтинга отелей Европы · Kaggle [sf-booking](https://www.kaggle.com/competitions/sf-booking)**
 
-**Стек:** Python 3.11+, pandas, scikit-learn, category-encoders, statsmodels, Jupyter.
+[![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?style=for-the-badge&logo=jupyter&logoColor=white)](https://jupyter.org/)
+[![pandas](https://img.shields.io/badge/pandas-2.3-150458?style=for-the-badge&logo=pandas&logoColor=white)](https://pandas.pydata.org/)
+[![NumPy](https://img.shields.io/badge/NumPy-2.3-013243?style=for-the-badge&logo=numpy&logoColor=white)](https://numpy.org/)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-1.7-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
+[![Matplotlib](https://img.shields.io/badge/Matplotlib-3.10-11557C?style=for-the-badge&logo=matplotlib&logoColor=white)](https://matplotlib.org/)
+[![Statsmodels](https://img.shields.io/badge/Statsmodels-0.14-006BA6?style=for-the-badge)](https://www.statsmodels.org/)
+[![Kaggle](https://img.shields.io/badge/Kaggle-sf--booking-20BEFF?style=for-the-badge&logo=kaggle&logoColor=white)](https://www.kaggle.com/competitions/sf-booking)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+[![MAPE](https://img.shields.io/badge/MAPE-0.139-blue?style=for-the-badge)](README.md#результаты)
+
+</div>
+
+---
+
+Построение модели, предсказывающей рейтинг отеля (`reviewer_score`) по табличным и инженерным признакам. Если предсказание сильно расходится с фактическим рейтингом, объект можно отправить на дополнительную проверку.
 
 ---
 
@@ -36,9 +54,9 @@ eda-feature-engineering-europe-hotels-kaggle/
 
 ### Ноутбуки
 
-- **`EDA_Project_3_model.ipynb`** — быстрый baseline: удаление object-колонок, `RandomForestRegressor`, MAPE ≈ 0.141.
+- **`EDA_Project_3_model.ipynb`** — baseline: удаление object-колонок, `RandomForestRegressor`, MAPE ≈ 0.141.
 - **`EDA_Feature_Engineering_Отели_Европы_Соревнов.ipynb`** — полный pipeline: EDA → очистка → `country` / `is_foreign` → encoding → VIF → chi² → модель, MAPE ≈ 0.139.
-- **`kaggle_version/hotels-of-europe.ipynb`** — та же логика для формата Kaggle (`hotels_train.csv`, `hotels_test.csv`, submission).
+- **`kaggle_version/hotels-of-europe.ipynb`** — та же логика для Kaggle (`hotels_train.csv`, `hotels_test.csv`, submission).
 
 ---
 
@@ -46,7 +64,7 @@ eda-feature-engineering-europe-hotels-kaggle/
 
 Исходный датасет большой (>170 МБ), в репозиторий не включён.
 
-1. Скачайте данные: [Google Диск — данные проекта](https://drive.google.com/drive/folders/1rZdq635ZjQZr_6nwKiouQrfpc_6bdOaI) или [Kaggle sf-booking](https://www.kaggle.com/competitions/sf-booking/data).
+1. Скачайте данные: [Google Диск](https://drive.google.com/drive/folders/1rZdq635ZjQZr_6nwKiouQrfpc_6bdOaI) или [Kaggle sf-booking](https://www.kaggle.com/competitions/sf-booking/data).
 2. Создайте папку `data/`.
 3. Для локального ноутбука положите **`hotels.csv`** в `data/`.
 4. Для Kaggle-версии нужны `hotels_train.csv`, `hotels_test.csv`, `submission.csv` (пути в ноутбуке — `/kaggle/input/...`).
@@ -87,4 +105,4 @@ jupyter lab
 
 ## Автор
 
-Karim Kerimov — 2025–2026. Учебный проект (SkillFactory / Kaggle sf-booking).
+**Karim** · [k.kerimow@yandex.ru](mailto:k.kerimow@yandex.ru)
