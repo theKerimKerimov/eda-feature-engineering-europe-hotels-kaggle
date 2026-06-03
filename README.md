@@ -28,8 +28,8 @@
 
 | Этап | Ноутбук | MAPE |
 |------|---------|------|
-| Baseline (без feature engineering) | `EDA_Project_3_model.ipynb` | 0.141 |
-| После EDA, FE и отбора признаков | `EDA_Feature_Engineering_Отели_Европы_Соревнов.ipynb` | 0.139 |
+| Baseline (без feature engineering) | `baseline_hotel_rating.ipynb` | 0.141 |
+| После EDA, FE и отбора признаков | `eda_feature_engineering_hotels_europe.ipynb` | 0.139 |
 
 MAPE считается через `sklearn.metrics.mean_absolute_percentage_error` (доля, не проценты).
 
@@ -42,10 +42,10 @@ eda-feature-engineering-europe-hotels-kaggle/
 ├── data/
 │   └── hotels.csv          # не в git, см. раздел «Данные»
 ├── kaggle_version/
-│   ├── hotels-of-europe.ipynb   # версия для Kaggle (train/test + submission)
-│   └── my_submit.csv            # пример submission-файла
-├── EDA_Feature_Engineering_Отели_Европы_Соревнов.ipynb   # основной ноутбук
-├── EDA_Project_3_model.ipynb   # baseline до предобработки
+│   ├── hotels_europe_kaggle.ipynb   # версия для Kaggle (train/test + submission)
+│   └── my_submit.csv                # пример submission-файла
+├── eda_feature_engineering_hotels_europe.ipynb   # основной ноутбук
+├── baseline_hotel_rating.ipynb                   # baseline до предобработки
 ├── README.md
 ├── LICENSE
 ├── .gitignore
@@ -54,9 +54,9 @@ eda-feature-engineering-europe-hotels-kaggle/
 
 ### Ноутбуки
 
-- **`EDA_Project_3_model.ipynb`** — baseline: удаление object-колонок, `RandomForestRegressor`, MAPE ≈ 0.141.
-- **`EDA_Feature_Engineering_Отели_Европы_Соревнов.ipynb`** — полный pipeline: EDA → очистка → `country` / `is_foreign` → encoding → VIF → chi² → модель, MAPE ≈ 0.139.
-- **`kaggle_version/hotels-of-europe.ipynb`** — та же логика для Kaggle (`hotels_train.csv`, `hotels_test.csv`, submission).
+- **`baseline_hotel_rating.ipynb`** — baseline: удаление object-колонок, `RandomForestRegressor`, MAPE ≈ 0.141.
+- **`eda_feature_engineering_hotels_europe.ipynb`** — полный pipeline: EDA → очистка → `country` / `is_foreign` → encoding → VIF → chi² → модель, MAPE ≈ 0.139.
+- **`kaggle_version/hotels_europe_kaggle.ipynb`** — та же логика для Kaggle (`hotels_train.csv`, `hotels_test.csv`, submission).
 
 ---
 
@@ -93,7 +93,7 @@ pip install -r requirements.txt
 jupyter lab
 ```
 
-Откройте `EDA_Feature_Engineering_Отели_Европы_Соревнов.ipynb` и выполните **Run All** (нужен `data/hotels.csv`).
+Откройте `eda_feature_engineering_hotels_europe.ipynb` и выполните **Run All** (нужен `data/hotels.csv`).
 
 ---
 
