@@ -2,7 +2,7 @@
 
 # Анализ отзывов отелей Booking.com
 
-**Предсказание рейтинга отелей Европы · Kaggle [sf-booking](https://www.kaggle.com/competitions/sf-booking)**
+**EDA + Feature Engineering · Отели Европы · [Kaggle sf-booking](https://www.kaggle.com/competitions/sf-booking)**
 
 [![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?style=for-the-badge&logo=jupyter&logoColor=white)](https://jupyter.org/)
@@ -20,7 +20,7 @@
 
 ---
 
-Построение модели, предсказывающей рейтинг отеля (`reviewer_score`) по табличным и инженерным признакам. Если предсказание сильно расходится с фактическим рейтингом, объект можно отправить на дополнительную проверку.
+Модель предсказывает рейтинг отеля (`reviewer_score`) по табличным и инженерным признакам. Сильное расхождение предсказания с фактом — сигнал для дополнительной проверки объекта.
 
 ---
 
@@ -28,10 +28,10 @@
 
 | Этап | Ноутбук | MAPE |
 |------|---------|------|
-| Baseline (без feature engineering) | `baseline_hotel_rating.ipynb` | 0.141 |
-| После EDA, FE и отбора признаков | `eda_feature_engineering_hotels_europe.ipynb` | 0.139 |
+| Baseline (без feature engineering) | [`notebooks/baseline_hotel_rating.ipynb`](notebooks/baseline_hotel_rating.ipynb) | 0.141 |
+| EDA + FE + отбор признаков | [`notebooks/eda_feature_engineering_hotels_europe.ipynb`](notebooks/eda_feature_engineering_hotels_europe.ipynb) | 0.139 |
 
-MAPE считается через `sklearn.metrics.mean_absolute_percentage_error` (доля, не проценты).
+MAPE — `sklearn.metrics.mean_absolute_percentage_error` (доля, не проценты).
 
 ---
 
@@ -39,39 +39,40 @@ MAPE считается через `sklearn.metrics.mean_absolute_percentage_err
 
 ```text
 eda-feature-engineering-europe-hotels-kaggle/
-├── data/
-│   └── hotels.csv          # не в git, см. раздел «Данные»
-├── kaggle_version/
-│   ├── hotels_europe_kaggle.ipynb   # версия для Kaggle (train/test + submission)
-│   └── my_submit.csv                # пример submission-файла
-├── eda_feature_engineering_hotels_europe.ipynb   # основной ноутбук
-├── baseline_hotel_rating.ipynb                   # baseline до предобработки
+│
+├── notebooks/                              # все ноутбуки
+│   ├── baseline_hotel_rating.ipynb         # baseline-модель
+│   ├── eda_feature_engineering_hotels_europe.ipynb   # основной pipeline
+│   └── kaggle/                             # версия для Kaggle
+│       ├── hotels_europe_kaggle.ipynb
+│       └── my_submit.csv                   # пример submission
+│
+├── data/                                   # данные (не в git)
+│   └── hotels.csv
+│
 ├── README.md
 ├── LICENSE
-├── .gitignore
-└── requirements.txt
+├── requirements.txt
+└── .gitignore
 ```
 
 ### Ноутбуки
 
-- **`baseline_hotel_rating.ipynb`** — baseline: удаление object-колонок, `RandomForestRegressor`, MAPE ≈ 0.141.
-- **`eda_feature_engineering_hotels_europe.ipynb`** — полный pipeline: EDA → очистка → `country` / `is_foreign` → encoding → VIF → chi² → модель, MAPE ≈ 0.139.
-- **`kaggle_version/hotels_europe_kaggle.ipynb`** — та же логика для Kaggle (`hotels_train.csv`, `hotels_test.csv`, submission).
+| Файл | Описание |
+|------|----------|
+| [`notebooks/baseline_hotel_rating.ipynb`](notebooks/baseline_hotel_rating.ipynb) | Baseline: удаление object-колонок, `RandomForestRegressor` |
+| [`notebooks/eda_feature_engineering_hotels_europe.ipynb`](notebooks/eda_feature_engineering_hotels_europe.ipynb) | Полный pipeline: EDA → FE → VIF → chi² → модель |
+| [`notebooks/kaggle/hotels_europe_kaggle.ipynb`](notebooks/kaggle/hotels_europe_kaggle.ipynb) | Тот же pipeline для Kaggle (`hotels_train` / `hotels_test`, submission) |
 
 ---
 
 ## Данные
 
-Исходный датасет большой (>170 МБ), в репозиторий не включён.
+Датасет >170 МБ, в репозиторий не входит.
 
-1. Скачайте данные: [Google Диск](https://drive.google.com/drive/folders/1rZdq635ZjQZr_6nwKiouQrfpc_6bdOaI) или [Kaggle sf-booking](https://www.kaggle.com/competitions/sf-booking/data).
-2. Создайте папку `data/`.
-3. Для локального ноутбука положите **`hotels.csv`** в `data/`.
-4. Для Kaggle-версии нужны `hotels_train.csv`, `hotels_test.csv`, `submission.csv` (пути в ноутбуке — `/kaggle/input/...`).
-
-**Признаки в сыром CSV:** `hotel_address`, `review_date`, `average_score`, `reviewer_nationality`, `negative_review`, `positive_review`, word counts, `reviewer_score` (таргет), `tags`, `days_since_review`, `lat`, `lng` и др.
-
-**Инженерные признаки в модели:** `country`, `is_foreign`, one-hot по стране и nationality (после `BinaryEncoder`).
+1. Скачать: [Google Диск](https://drive.google.com/drive/folders/1rZdq635ZjQZr_6nwKiouQrfpc_6bdOaI) или [Kaggle sf-booking](https://www.kaggle.com/competitions/sf-booking/data).
+2. Положить **`hotels.csv`** в папку **`data/`** (в корне репозитория).
+3. Для Kaggle-версии: `hotels_train.csv`, `hotels_test.csv`, `submission.csv` (пути в ноутбуке — `/kaggle/input/...`).
 
 ---
 
@@ -80,26 +81,24 @@ eda-feature-engineering-europe-hotels-kaggle/
 ```bash
 git clone https://github.com/theKerimKerimov/eda-feature-engineering-europe-hotels-kaggle.git
 cd eda-feature-engineering-europe-hotels-kaggle
-```
 
-```bash
 python -m venv venv
-# Windows:
-venv\Scripts\activate
-# Linux/macOS:
-source venv/bin/activate
+venv\Scripts\activate          # Windows
+# source venv/bin/activate   # Linux / macOS
 
 pip install -r requirements.txt
 jupyter lab
 ```
 
-Откройте `eda_feature_engineering_hotels_europe.ipynb` и выполните **Run All** (нужен `data/hotels.csv`).
+Откройте **`notebooks/eda_feature_engineering_hotels_europe.ipynb`** → **Run All**.
+
+> Jupyter запускайте из **корня** репозитория — ноутбуки читают данные из `../data/hotels.csv`.
 
 ---
 
 ## Зависимости
 
-См. [`requirements.txt`](requirements.txt). Минимальная версия Python: **3.11**.
+См. [`requirements.txt`](requirements.txt). Python **3.11+**.
 
 ---
 
